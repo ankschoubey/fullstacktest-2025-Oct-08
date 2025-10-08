@@ -11,6 +11,7 @@ class ProductService(
     private val productRepository: ProductRepository
 ) {
     fun findAll() = productRepository.findAll()
+    fun search(searchTerm: String) = productRepository.findByNameContainingIgnoreCase(searchTerm)
     fun saveAll(productsToSave: List<Product>) {
         productRepository.saveAll(productsToSave)
     }

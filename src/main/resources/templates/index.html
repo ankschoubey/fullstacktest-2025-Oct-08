@@ -14,6 +14,7 @@
         <h1>Products</h1>
         <div class="right-menu">
             <wa-button hx-get="/products" hx-target="#content-area">Load Products</wa-button>
+            <a href="/products/search" target="_blank" style="text-decoration: none;"><wa-button>Search Products</wa-button></a>
             <wa-drawer label="Drawer" without-header class="drawer-without-header">
                 <form hx-post="/products" hx-target="#content-area">
                     <wa-input label="Name" name="name"></wa-input>

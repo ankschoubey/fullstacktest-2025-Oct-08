@@ -1,0 +1,18 @@
+role: senior-backend-developer with expertise in htmx and  thymeleaf 
+task: Create search page
+context: 
+  - background: 
+    - we have a products page which list products
+  - requirement: 
+    - A new page with a search box that lets you search for products by title. Active search that updates the table as you type.
+output:
+  - a new search file
+  - updates list products api which takes a search parameter
+  - ensure that search is active search
+agency: 
+  - augmentation: collaborate with me to complete this task
+self-verification: 
+   - compile using `mvn clean compile test-compile`
+before-starting:
+  - "Ask me any questions that you feel could help you craft a better response."
+  - "Summarize this prompt & action you will take. WAIT FOR ME to ask you to continue"

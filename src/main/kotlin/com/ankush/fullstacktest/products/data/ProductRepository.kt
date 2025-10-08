@@ -30,6 +30,13 @@ class ProductRepository(
             .optional()
     }
 
+    fun findByNameContainingIgnoreCase(name: String): List<Product> {
+        return jdbcClient.sql("SELECT id, name, slug FROM products WHERE name ILIKE :name")
+            .param("name", "%$name%")
+            .query(Product::class.java)
+            .list()
+    }
+
     fun saveAll(productsToSave: List<Product>) {
         productsToSave.forEach { save(it) }
     }
