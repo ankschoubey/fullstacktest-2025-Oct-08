@@ -1,0 +1,12 @@
+<table class="table table-striped">
+    <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Slug</th>
+    </thead>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.slug}"></td>
+    </tr>
+</table>
