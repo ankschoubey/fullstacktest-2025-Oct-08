@@ -29,4 +29,8 @@ class ProductRepository(
             .query(Product::class.java)
             .optional()
     }
+
+    fun saveAll(productsToSave: List<Product>) {
+        productsToSave.forEach { save(it) }
+    }
 }
