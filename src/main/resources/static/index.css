@@ -6,6 +6,22 @@
     flex-direction: column;
 }
 
-.header{
+.header {
     display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+    position: sticky;
+    top: 0px;
+    background: white;
+    align-items: center;
+}
+
+table tr:nth-child(even) {
+    background-color: #ededed;
+}
+
+.drawer-without-header form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
