@@ -14,6 +14,23 @@
         <h1>Products</h1>
         <div class="right-menu">
             <wa-button hx-get="/products" hx-target="#content-area">Load Products</wa-button>
+            <wa-drawer label="Drawer" without-header class="drawer-without-header">
+                <form hx-post="/products" hx-target="#content-area">
+                    <wa-input label="Name" name="name"></wa-input>
+                    <wa-input label="Slug" name="slug"></wa-input>
+                    <wa-button type="submit">Submit</wa-button>
+                </form>
+                <wa-button slot="footer" variant="brand" data-drawer="close">Close</wa-button>
+            </wa-drawer>
+
+            <wa-button>Add</wa-button>
+
+            <script>
+                const drawer = document.querySelector('.drawer-without-header');
+                const openButton = drawer.nextElementSibling;
+
+                openButton.addEventListener('click', () => (drawer.open = true));
+            </script>
         </div>
     </div>
     <div id="content-area">
