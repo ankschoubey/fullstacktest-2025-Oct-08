@@ -1,0 +1,14 @@
+role: senior-backend-developer with expertise in htmx and thymeleaf
+task: Create search page
+context:
+  - background:
+      - we have a products page which list products
+  - requirement:
+      - On the original page where you load the products, there should be a link to update the product details that takes you to a new page to update the product.
+output:
+  - a new column within the table which opens up an update page from where values can be updated
+agency:
+  - augmentation: collaborate with me to complete this task
+before-starting:
+  - "Ask me any questions that you feel could help you craft a better response."
+  - "Summarize this prompt & action you will take. WAIT FOR ME to ask you to continue"

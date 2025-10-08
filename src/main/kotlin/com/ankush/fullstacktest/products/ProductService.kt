@@ -12,6 +12,8 @@ class ProductService(
 ) {
     fun findAll() = productRepository.findAll()
     fun search(searchTerm: String) = productRepository.findByNameContainingIgnoreCase(searchTerm)
+    fun findById(id: UUID) = productRepository.findById(id)
+
     fun saveAll(productsToSave: List<Product>) {
         productRepository.saveAll(productsToSave)
     }
@@ -19,5 +21,12 @@ class ProductService(
     fun createProduct(request: CreateProductRequest) {
         val product = Product(UUID.randomUUID(), request.name, request.slug)
         productRepository.save(product)
+    }
+
+    fun updateProduct(id: UUID, name: String, slug: String) {
+        val product = productRepository.findById(id).orElseThrow()
+        product.name = name
+        product.slug = slug
+        productRepository.update(product)
     }
 }

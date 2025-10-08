@@ -17,6 +17,14 @@ class ProductRepository(
             .update();
     }
 
+    fun update(product: Product) {
+        jdbcClient.sql("UPDATE products SET name = :name, slug = :slug WHERE id = :id")
+            .param("id", product.id)
+            .param("name", product.name)
+            .param("slug", product.slug)
+            .update();
+    }
+
     fun findAll(): List<Product>? {
         return jdbcClient.sql("SELECT id, name, slug FROM products")
             .query(Product::class.java)

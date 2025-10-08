@@ -3,21 +3,14 @@ package com.ankush.fullstacktest.products.web
 import com.ankush.fullstacktest.products.ProductService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @Controller
 @RequestMapping("/products")
 class ProductController(
     private val productService: ProductService
 ) {
-
-    @GetMapping("/search")
-    fun search(): String {
-        return "products/search"
-    }
 
     @GetMapping
     fun listProduct(model: Model, @RequestParam(required = false) search: String?): String {
@@ -27,6 +20,24 @@ class ProductController(
             productService.search(search)
         model.addAttribute("products", products)
         return "products/list"
+    }
+
+    @GetMapping("/{id}")
+    fun getProduct(@PathVariable id: UUID, model: Model): String {
+        val product = productService.findById(id).orElseThrow()
+        model.addAttribute("product", product)
+        return "products/edit"
+    }
+
+    @GetMapping("/search")
+    fun search(): String {
+        return "products/search"
+    }
+
+    @PutMapping("/{id}")
+    fun updateProduct(@PathVariable id: UUID, request: CreateProductRequest, model: Model): String {
+        productService.updateProduct(id, request.name, request.slug)
+        return "redirect:/"
     }
 
     @PostMapping

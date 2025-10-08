@@ -20,7 +20,7 @@ table tr:nth-child(even) {
     background-color: #ededed;
 }
 
-.drawer-without-header form {
+form {
     display: flex;
     flex-direction: column;
     gap: 15px;
