@@ -31,6 +31,12 @@
                 const openButton = drawer.nextElementSibling;
 
                 openButton.addEventListener('click', () => (drawer.open = true));
+
+                const form = drawer.querySelector('form');
+                form.addEventListener('htmx:afterOnLoad', function () {
+                    form.reset();
+                    drawer.open = false
+                });
             </script>
         </div>
     </div>
