@@ -29,4 +29,8 @@ class ProductService(
         product.slug = slug
         productRepository.update(product)
     }
+
+    fun deleteProduct(id: UUID) {
+        productRepository.deleteById(id)
+    }
 }

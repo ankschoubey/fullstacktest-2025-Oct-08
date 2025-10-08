@@ -45,6 +45,12 @@ class ProductRepository(
             .list()
     }
 
+    fun deleteById(id: UUID) {
+        jdbcClient.sql("DELETE FROM products WHERE id = :id")
+            .param("id", id)
+            .update()
+    }
+
     fun saveAll(productsToSave: List<Product>) {
         productsToSave.forEach { save(it) }
     }

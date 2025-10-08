@@ -10,5 +10,31 @@
         <td th:text="${product.name}"></td>
         <td th:text="${product.slug}"></td>
         <td><a th:href="@{/products/{id}(id=${product.id})}">Edit</a></td>
+        <td>
+            <wa-button th:attr="data-dialog-id='dialog-' + ${product.id}">Delete</wa-button>
+            <wa-dialog label="Confirm Deletion" th:id="'dialog-' + ${product.id}">
+                Are you sure you want to delete this product?
+                <wa-button slot="footer"
+                           th:attr="hx-delete=@{/products/{id}(id=${product.id})}, hx-target='closest tr', hx-swap='outerHTML'">
+                    Confirm
+                </wa-button>
+                <wa-button slot="footer" th:attr="data-dialog-id='dialog-' + ${product.id}">Cancel</wa-button>
+            </wa-dialog>
+        </td>
     </tr>
 </table>
+<script>
+    document.querySelectorAll('wa-button[data-dialog-id]').forEach(button => {
+        const dialogId = button.getAttribute('data-dialog-id');
+        const dialog = document.getElementById(dialogId);
+        if (dialog) {
+            button.addEventListener('click', (event) => {
+                if (button.slot === 'footer') {
+                    dialog.open = false
+                } else {
+                    dialog.show();
+                }
+            });
+        }
+    });
+</script>

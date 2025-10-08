@@ -40,6 +40,13 @@ class ProductController(
         return "redirect:/"
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseBody
+    fun deleteProduct(@PathVariable id: UUID): String {
+        productService.deleteProduct(id)
+        return ""
+    }
+
     @PostMapping
     fun createProduct(request: CreateProductRequest, model: Model): String {
         productService.createProduct(request)

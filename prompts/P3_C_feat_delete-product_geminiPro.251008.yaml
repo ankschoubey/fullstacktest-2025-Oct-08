@@ -1,0 +1,17 @@
+role: senior-backend-developer with expertise in htmx and thymeleaf
+task: Delete search page
+context:
+  - background:
+      - we have a products page which list products
+  - requirement:
+      - Add a delete button to delete a product from the database, make sure to have a <dialog> to confirm the deletion.
+output:
+  - a new column within the table which opens up an update page from where values can be updated
+  - check index.html for reference
+    - For all html- use web awesome components
+    - For new pages, use index.css
+agency:
+  - augmentation: collaborate with me to complete this task
+before-starting:
+  - "Ask me any questions that you feel could help you craft a better response."
+  - "Summarize this prompt & action you will take. WAIT FOR ME to ask you to continue"
