@@ -3,12 +3,14 @@
     <th>ID</th>
     <th>Name</th>
     <th>Slug</th>
+    <th>Updated At</th>
     <th>Actions</th>
     </thead>
     <tr th:each="product : ${products}">
         <td th:text="${product.id}"></td>
         <td th:text="${product.name}"></td>
         <td th:text="${product.slug}"></td>
+        <td th:text="${product.updatedAt != null ? #temporals.format(product.updatedAt, 'yyyy-MM-dd HH:mm:ss') : ''}"></td>
         <td><a th:href="@{/products/{id}(id=${product.id})}">Edit</a></td>
         <td>
             <wa-button th:attr="data-dialog-id='dialog-' + ${product.id}">Delete</wa-button>

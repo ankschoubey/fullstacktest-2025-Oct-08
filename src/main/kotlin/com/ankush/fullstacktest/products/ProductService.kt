@@ -4,6 +4,7 @@ import com.ankush.fullstacktest.products.data.Product
 import com.ankush.fullstacktest.products.data.ProductRepository
 import com.ankush.fullstacktest.products.web.CreateProductRequest
 import org.springframework.stereotype.Service
+import java.time.LocalDateTime
 import java.util.*
 
 @Service
@@ -19,7 +20,7 @@ class ProductService(
     }
 
     fun createProduct(request: CreateProductRequest) {
-        val product = Product(UUID.randomUUID(), request.name, request.slug)
+        val product = Product(UUID.randomUUID(), request.name, request.slug, LocalDateTime.now())
         productRepository.save(product)
     }
 
@@ -27,6 +28,7 @@ class ProductService(
         val product = productRepository.findById(id).orElseThrow()
         product.name = name
         product.slug = slug
+        product.updatedAt = LocalDateTime.now()
         productRepository.update(product)
     }
 

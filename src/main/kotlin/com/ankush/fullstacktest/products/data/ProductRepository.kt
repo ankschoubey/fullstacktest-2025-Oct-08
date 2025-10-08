@@ -10,36 +10,38 @@ class ProductRepository(
 ) {
 
     fun save(product: Product) {
-        jdbcClient.sql("INSERT INTO products(id, name, slug) VALUES (:id, :name, :slug)")
+        jdbcClient.sql("INSERT INTO products(id, name, slug, updated_at) VALUES (:id, :name, :slug, :updatedAt)")
             .param("id", product.id)
             .param("name", product.name)
             .param("slug", product.slug)
+            .param("updatedAt", product.updatedAt)
             .update();
     }
 
     fun update(product: Product) {
-        jdbcClient.sql("UPDATE products SET name = :name, slug = :slug WHERE id = :id")
+        jdbcClient.sql("UPDATE products SET name = :name, slug = :slug, updated_at = :updated_at WHERE id = :id")
             .param("id", product.id)
             .param("name", product.name)
             .param("slug", product.slug)
+            .param("updated_at", product.updatedAt)
             .update();
     }
 
     fun findAll(): List<Product>? {
-        return jdbcClient.sql("SELECT id, name, slug FROM products")
+        return jdbcClient.sql("SELECT id, name, slug, updated_at FROM products ORDER BY updated_at DESC NULLS LAST")
             .query(Product::class.java)
             .list()
     }
 
     fun findById(id: UUID): Optional<Product> {
-        return jdbcClient.sql("SELECT id, name, slug FROM products WHERE id = :id")
+        return jdbcClient.sql("SELECT id, name, slug, updated_at FROM products WHERE id = :id")
             .param("id", id)
             .query(Product::class.java)
             .optional()
     }
 
     fun findByNameContainingIgnoreCase(name: String): List<Product> {
-        return jdbcClient.sql("SELECT id, name, slug FROM products WHERE name ILIKE :name")
+        return jdbcClient.sql("SELECT id, name, slug, updated_at FROM products WHERE name ILIKE :name ORDER BY updated_at DESC NULLS LAST")
             .param("name", "%$name%")
             .query(Product::class.java)
             .list()

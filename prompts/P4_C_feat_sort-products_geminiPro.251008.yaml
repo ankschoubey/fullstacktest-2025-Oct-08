@@ -1,0 +1,19 @@
+role: senior-backend-developer with expertise in htmx and thymeleaf
+task: Sort search and list page
+context:
+  - background:
+      - we have a products page which list products
+      - the database table does updatedAt
+  - requirement:
+      - add a updatedAt field in the database
+      - update table to show updatedAt field with date and time
+      - on edit, ensure updatedAt field is updated
+      - for existing records, keep updatedAt field blank
+      - while querying ensure latest updated record is on top
+output:
+  - a new column within the postgres table and html table
+agency:
+  - augmentation: collaborate with me to complete this task
+before-starting:
+  - "Ask me any questions that you feel could help you craft a better response."
+  - "Summarize this prompt & action you will take. WAIT FOR ME to ask you to continue"
