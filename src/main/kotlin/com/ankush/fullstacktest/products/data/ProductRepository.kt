@@ -2,8 +2,7 @@ package com.ankush.fullstacktest.products.data
 
 import org.springframework.jdbc.core.simple.JdbcClient
 import org.springframework.stereotype.Repository
-import java.util.Optional
-import java.util.UUID
+import java.util.*
 
 @Repository
 class ProductRepository(
@@ -19,7 +18,9 @@ class ProductRepository(
     }
 
     fun findAll(): List<Product>? {
-        return null;
+        return jdbcClient.sql("SELECT id, name, slug FROM products")
+            .query(Product::class.java)
+            .list()
     }
 
     fun findById(id: UUID): Optional<Product> {
